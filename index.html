@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-beauty life — Auto-cuidado coreano</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400&family=Noto+Sans+KR:wght@300;400&family=Playfair+Display:ital,wght@0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --white:    #FAFAF8;
+  --blush:    #F2E3DC;
+  --petal:    #E8C9C1;
+  --rose:     #C4806A;
+  --mist:     #D6E4E0;
+  --celadon:  #8FB8B0;
+  --ink:      #1A1A1E;
+  --ash:      #6B6B72;
+  --gold:     #C9A96E;
+  --pale-gold: #EAD9BA;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+  cursor: none;
+  overflow-x: hidden;
+}
+
+/* ─── CUSTOM CURSOR ─── */
+.cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--rose);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+  mix-blend-mode: multiply;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid var(--rose);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.18s ease, width 0.3s, height 0.3s, opacity 0.3s;
+  opacity: 0.5;
+}
+body:hover .cursor { opacity: 1; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; width: 100%;
+  padding: 1.4rem 5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 500;
+  background: linear-gradient(to bottom, rgb(255, 249, 247) 70%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.nav-logo {
+  display: flex; flex-direction: column; line-height: 1;
+}
+.nav-logo .kr {
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 200;
+  font-size: 1.2rem;
+  letter-spacing: 0.15em;
+  color: var(--ink);
+}
+.nav-logo .en {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-top: 2px;
+}
+
+nav ul { list-style: none; display: flex; gap: 2.5rem; }
+nav a {
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ash);
+  transition: color 0.3s;
+}
+nav a:hover { color: var(--rose); }
+
+.nav-cta {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rose);
+  border: 1px solid var(--petal);
+  padding: 0.65rem 1.6rem;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 40px;
+}
+.nav-cta:hover { background: var(--rose); color: var(--white); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-panel {
+  position: absolute;
+  right: 0; top: 0;
+  width: 45%; height: 100%;
+  background: var(--blush);
+  z-index: 0;
+}
+
+.hero-left {
+  padding: 12rem 5rem 6rem;
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; justify-content: center;
+}
+
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 2.5rem;
+  animation: fadeSlideLeft 0.9s 0.2s both;
+}
+.eyebrow-line {
+  width: 40px; height: 1px;
+  background: var(--celadon);
+}
+.eyebrow-text {
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--celadon);
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 5.5vw, 5.5rem);
+  line-height: 1.08;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  animation: fadeSlideLeft 0.9s 0.35s both;
+}
+h1 em { font-style: italic; color: var(--rose); }
+h1 .kr-sub {
+  display: block;
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 200;
+  font-size: 0.45em;
+  letter-spacing: 0.25em;
+  color: var(--ash);
+  margin-top: 0.4rem;
+}
+
+.hero-desc {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--ash);
+  max-width: 420px;
+  margin: 2rem 0 3rem;
+  animation: fadeSlideLeft 0.9s 0.5s both;
+}
+
+.hero-btns {
+  display: flex; gap: 1.2rem; align-items: center;
+  animation: fadeSlideLeft 0.9s 0.65s both;
+}
+
+.btn-main {
+  background: var(--ink);
+  color: var(--white);
+  padding: 1rem 2.5rem;
+  border-radius: 40px;
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: background 0.3s, transform 0.2s;
+  display: inline-block;
+}
+.btn-main:hover { background: var(--rose); transform: translateY(-2px); }
+
+.btn-ghost {
+  color: var(--ash);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: flex; align-items: center; gap: 0.6rem;
+  transition: color 0.3s;
+}
+.btn-ghost::after {
+  content: '→';
+  transition: transform 0.3s;
+}
+.btn-ghost:hover { color: var(--rose); }
+.btn-ghost:hover::after { transform: translateX(4px); }
+
+.hero-stats {
+  display: flex; gap: 3rem;
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(26,26,30,0.08);
+  animation: fadeSlideLeft 0.9s 0.8s both;
+}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-style: italic;
+  color: var(--rose);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-top: 0.3rem;
+}
+
+/* hero right */
+.hero-right {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 8rem 4rem 4rem;
+  animation: fadeIn 1.2s 0.4s both;
+}
+
+.skin-card {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 2.5rem;
+  width: 300px;
+  box-shadow: 0 20px 60px rgba(196,128,106,0.12);
+  position: relative;
+}
+
+.skin-card-tag {
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--celadon);
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.skin-face {
+  width: 100%;
+  height: 180px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, var(--blush) 0%, var(--petal) 60%, var(--pale-gold) 100%);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* SVG face illustration */
+.face-svg { width: 110px; opacity: 0.85; }
+
+.skin-steps-mini {
+  display: flex; flex-direction: column; gap: 0.6rem;
+}
+.mini-step {
+  display: flex; align-items: center; gap: 0.8rem;
+  font-size: 0.8rem; color: var(--ash);
+}
+.mini-dot {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem;
+  flex-shrink: 0;
+}
+.mini-dot.c { background: var(--mist); color: var(--celadon); }
+.mini-dot.r { background: var(--blush); color: var(--rose); }
+.mini-dot.g { background: var(--pale-gold); color: var(--gold); }
+
+.float-badge {
+  position: absolute;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.float-badge-1 {
+  top: -18px; right: -30px;
+  animation: floatBadge 4s ease-in-out infinite;
+}
+.float-badge-2 {
+  bottom: -18px; left: -30px;
+  background: var(--celadon);
+  animation: floatBadge 4s 2s ease-in-out infinite;
+}
+
+@keyframes floatBadge {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.petal-deco {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  pointer-events: none;
+}
+.petal-1 {
+  width: 300px; height: 300px;
+  background: var(--petal);
+  top: 5rem; right: -4rem;
+}
+.petal-2 {
+  width: 180px; height: 180px;
+  background: var(--celadon);
+  bottom: 5rem; left: -2rem;
+}
+
+/* ─── MARQUEE ─── */
+.marquee-band {
+  overflow: hidden;
+  background: var(--ink);
+  padding: 1.1rem 0;
+  position: relative;
+}
+.marquee-inner {
+  display: flex;
+  gap: 0;
+  animation: marquee 28s linear infinite;
+  white-space: nowrap;
+}
+.marquee-inner span {
+  flex-shrink: 0;
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 200;
+  font-size: 1rem;
+  color: var(--blush);
+  letter-spacing: 0.12em;
+  padding: 0 2.5rem;
+}
+.marquee-inner .sep { color: var(--rose); padding: 0 0.5rem; }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ─── SKINCARE SECTION ─── */
+.skincare {
+  padding: 9rem 5rem;
+  position: relative;
+}
+
+.section-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: end;
+  margin-bottom: 6rem;
+}
+
+.sec-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--celadon);
+  display: flex; align-items: center; gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+.sec-label::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--celadon);
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.18;
+}
+h2 em { font-style: italic; color: var(--rose); }
+
+.section-desc {
+  font-size: 0.92rem;
+  line-height: 1.9;
+  color: var(--ash);
+  align-self: end;
+}
+
+/* Steps accordion */
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(26,26,30,0.08);
+}
+
+.step-item {
+  border-bottom: 1px solid rgba(26,26,30,0.08);
+  overflow: hidden;
+}
+
+.step-header {
+  display: grid;
+  grid-template-columns: 80px 1fr 40px;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  cursor: pointer;
+  transition: color 0.3s;
+  user-select: none;
+}
+.step-header:hover { color: var(--rose); }
+
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-style: italic;
+  color: var(--petal);
+  line-height: 1;
+  transition: color 0.3s;
+}
+.step-item.open .step-num { color: var(--rose); }
+
+.step-title-wrap {
+  display: flex; flex-direction: column; gap: 0.2rem;
+}
+.step-kr {
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 200;
+  font-size: 0.7rem;
+  color: var(--ash);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.2rem;
+}
+.step-title {
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.step-toggle {
+  width: 32px; height: 32px;
+  border: 1px solid var(--petal);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  color: var(--rose);
+  transition: transform 0.4s, background 0.3s;
+}
+.step-item.open .step-toggle { transform: rotate(45deg); background: var(--blush); }
+
+.step-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.step-item.open .step-body { max-height: 400px; }
+
+.step-inner {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  padding-bottom: 2.5rem;
+}
+
+.step-body-content { 
+.step-body-content p {
+  font-size: 0.88rem;
+  line-height: 1.9;
+  color: var(--ash);
+  margin-bottom: 1.2rem;
+  }
+}
+
+.product-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--blush);
+  border-radius: 20px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--rose);
+  margin: 0.2rem 0.2rem 0.2rem 0;
+  transition: background 0.3s;
+}
+.product-chip:hover { background: var(--petal); }
+
+/* ─── FOOD SECTION ─── */
+.food-section {
+  padding: 8rem 5rem;
+  background: var(--blush);
+  position: relative;
+  overflow: hidden;
+}
+
+.food-section::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(143,184,176,0.25) 0%, transparent 70%);
+  right: -150px; top: -150px;
+  pointer-events: none;
+}
+
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 5rem;
+}
+
+.food-card {
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.4s, box-shadow 0.4s;
+  position: relative;
+}
+.food-card:hover { transform: translateY(-8px); box-shadow: 0 24px 50px rgba(196,128,106,0.15); }
+
+.food-card-img {
+  height: 160px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.food-card:nth-child(1) .food-card-img { background: linear-gradient(135deg, #D8EAD3, #B8D4B0); }
+.food-card:nth-child(2) .food-card-img { background: linear-gradient(135deg, #FAE0D4, #F2C4B0); }
+.food-card:nth-child(3) .food-card-img { background: linear-gradient(135deg, #D4E4EA, #B0CCD6); }
+.food-card:nth-child(4) .food-card-img { background: linear-gradient(135deg, #EDE0D4, #DEC8B4); }
+
+.food-card-body { padding: 1.5rem; }
+.food-card-tag {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--celadon);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.food-card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+.food-card-name .kr-name {
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 200;
+  font-size: 0.7rem;
+  color: var(--ash);
+  display: block;
+  letter-spacing: 0.1em;
+}
+.food-card-desc {
+  font-size: 0.8rem;
+  line-height: 1.75;
+  color: var(--ash);
+  margin-bottom: 1rem;
+}
+
+.food-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.benefit-pill {
+  background: var(--mist);
+  color: var(--celadon);
+  border-radius: 12px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+}
+
+/* ─── RITUAL SECTION ─── */
+.ritual-section {
+  padding: 9rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8rem;
+  align-items: center;
+}
+
+.ritual-visual-wrap {
+  position: relative;
+}
+
+.ritual-big-circle {
+  width: 380px; height: 380px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--mist) 0%, var(--blush) 100%);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  animation: breathe 6s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+.ritual-inner-circle {
+  width: 270px; height: 270px;
+  border-radius: 50%;
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 2rem;
+  box-shadow: inset 0 2px 20px rgba(196,128,106,0.08);
+}
+
+.ritual-inner-circle .kr-big {
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 200;
+  font-size: 2.8rem;
+  color: var(--rose);
+  letter-spacing: 0.1em;
+  line-height: 1;
+}
+.ritual-inner-circle .inner-sub {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-top: 0.6rem;
+}
+
+.orbit-item {
+  position: absolute;
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 8px 24px rgba(196,128,106,0.15);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  font-size: 1.4rem;
+  cursor: default;
+  transition: transform 0.3s;
+}
+.orbit-item:hover { transform: scale(1.15); }
+.orbit-item small {
+  font-size: 0.5rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-top: 2px;
+}
+
+.o1 { top: -20px; left: 50%; transform: translateX(-50%); }
+.o2 { right: -20px; top: 50%; transform: translateY(-50%); }
+.o3 { bottom: -20px; left: 50%; transform: translateX(-50%); }
+.o4 { left: -20px; top: 50%; transform: translateY(-50%); }
+
+.ritual-content {
+  margin-top: 3rem;
+  display: flex; flex-direction: column; gap: 0;
+  }
+
+.ritual-item {
+  display: flex; gap: 1.5rem;
+  padding: 1.8rem 0;
+  border-bottom: 1px solid rgba(26,26,30,0.07);
+  transition: background 0.3s;
+  align-items: flex-start;
+}
+
+.ritual-item-icon {
+  font-size: 1.6rem;
+  width: 48px; flex-shrink: 0;
+  text-align: center;
+}
+.ritual-item-text h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  margin-bottom: 0.4rem;
+}
+.ritual-item-text p {
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: var(--ash);
+}
+
+/* ─── TIP CARDS ─── */
+.tips-section {
+  padding: 8rem 5rem;
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+
+.tips-section::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  border: 1px solid rgba(242,227,220,0.06);
+  top: -150px; right: -150px;
+}
+.tips-section::after {
+  content: '';
+  position: absolute;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  border: 1px solid rgba(242,227,220,0.04);
+  bottom: -100px; left: -100px;
+}
+
+.tips-section .sec-label { color: var(--celadon); }
+.tips-section .sec-label::before { background: var(--celadon); }
+.tips-section h2 { color: var(--white); }
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.tip-card {
+  border: 1px solid rgba(242,227,220,0.12);
+  border-radius: 16px;
+  padding: 2.5rem;
+  transition: border-color 0.3s, transform 0.3s, background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.tip-card:hover {
+  border-color: rgba(196,128,106,0.4);
+  transform: translateY(-4px);
+  background: rgba(196,128,106,0.05);
+}
+.tip-card::before {
+  content: attr(data-num);
+  position: absolute;
+  top: -1rem; right: 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 6rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.03);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.tip-emoji { font-size: 1.8rem; margin-bottom: 1.2rem; display: block; }
+.tip-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 0.8rem;
+}
+.tip-card p {
+  font-size: 0.82rem;
+  line-height: 1.85;
+  color: rgba(250,250,248,0.55);
+}
+
+.tip-card .tip-tag {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose);
+  border: 1px solid rgba(196,128,106,0.3);
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+}
+
+/* ─── NEWSLETTER / CTA ─── */
+.cta-section {
+  padding: 10rem 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 80%, rgba(232,201,193,0.4) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.cta-section .sec-label { justify-content: center; margin-bottom: 1.5rem; }
+.cta-section .sec-label::before { display: none; }
+
+.cta-section h2 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  max-width: 700px;
+  margin-bottom: 1.5rem;
+}
+
+.cta-section p {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--ash);
+  max-width: 450px;
+  margin-bottom: 3rem;
+}
+
+.email-form {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--petal);
+  border-radius: 50px;
+  overflow: hidden;
+  background: var(--white);
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 8px 30px rgba(196,128,106,0.12);
+}
+
+.email-form input {
+  flex: 1;
+  border: none;
+  padding: 1rem 1.5rem;
+  background: transparent;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 0.85rem;
+  color: var(--ink);
+  outline: none;
+}
+.email-form input::placeholder { color: var(--ash); }
+
+.email-form button {
+  background: var(--rose);
+  color: var(--white);
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 40px;
+  margin: 0.3rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: background 0.3s;
+  white-space: nowrap;
+}
+.email-form button:hover { background: var(--ink); }
+
+.cta-note {
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  color: var(--ash);
+  letter-spacing: 0.08em;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 3rem 5rem;
+  border-top: 1px solid rgba(26,26,30,0.08);
+  display: flex; align-items: center; justify-content: space-between;
+}
+footer .logo-foot {
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 200;
+  font-size: 1.3rem;
+  letter-spacing: 0.15em;
+  color: var(--ink);
+}
+footer p {
+  font-size: 0.7rem;
+  color: var(--ash);
+  letter-spacing: 0.08em;
+}
+footer nav ul { list-style: none; display: flex; gap: 2rem; }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeSlideLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.vis { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media(max-width: 960px) {
+  nav { padding: 1.2rem 2rem; }
+  nav ul, .nav-cta { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-bg-panel { width: 100%; height: 50%; top: auto; bottom: 0; }
+  .hero-left { padding: 8rem 2rem 4rem; }
+  .hero-right { display: none; }
+  .skincare, .food-section, .ritual-section, .tips-section, .cta-section { padding: 5rem 2rem; }
+  .section-header { grid-template-columns: 1fr; gap: 1rem; }
+  .food-grid { grid-template-columns: 1fr 1fr; }
+  .ritual-section { grid-template-columns: 1fr; }
+  .ritual-visual-wrap { display: none; }
+  .tips-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+  footer nav ul { display: flex; }
+  .step-inner { grid-template-columns: 60px 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="kr">K-BEAUTY LIFE</span>
+  </div>
+  <ul>
+    <li><a href="#skincare">Skincare</a></li>
+    <li><a href="#alimentacao">Alimentação</a></li>
+    <li><a href="#rituais">Rituais</a></li>
+    <li><a href="#dicas">Dicas</a></li>
+  </ul>
+  <a href="#newsletter" class="nav-cta">Receber dicas</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-panel"></div>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">K-Beauty · Auto-cuidado coreano</span>
+    </div>
+
+    <h1>
+      Pele de<br><em>vidro,</em><br>vida leve.
+      <span class="kr-sub">유리 피부· </span>
+    </h1>
+
+    <p class="hero-desc">
+      A Coreia do Sul revelou ao mundo que beleza começa por dentro, com alimentação consciente e rituais de skincare. Descubra como alcançar a tão desejada "glass skin" e viver com leveza e brilho natural.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#skincare" class="btn-main">Começar a rotina</a>
+      <a href="#alimentacao" class="btn-ghost">Ver receitas</a>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">10</div>
+        <div class="stat-label">Passos skincare</div>
+      </div>
+      <div>
+        <div class="stat-num">7</div>
+        <div class="stat-label">Alimentos essenciais</div>
+      </div>
+      <div>
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Brilho natural</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="petal-deco petal-1"></div>
+    <div class="petal-deco petal-2"></div>
+    <div class="skin-card">
+      <span class="float-badge float-badge-1">Glass Skin</span>
+      <span class="float-badge float-badge-2">Natural & Eficaz</span>
+      <span class="skin-card-tag">Rotina diária coreana</span>
+      <div class="skin-face">
+        <img src = "Gemini_Generated_Image_ilcveailcveailcv.png" alt="Ilustração de rosto com pele de vidro" width= "500 class="face-svg">
+      </div>
+      <div class="skin-steps-mini">
+        <div class="mini-step">
+          <div class="mini-dot c">1</div>
+          Limpeza dupla
+        </div>
+        <div class="mini-step">
+          <div class="mini-dot r">2</div>
+          Tônico + Essência
+        </div>
+        <div class="mini-step">
+          <div class="mini-dot g">3</div>
+          Sérum + Protetor solar
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-band"></div>
+<!-- SKINCARE -->
+<section class="skincare reveal" id="skincare">
+  <div class="section-header">
+    <div>
+      <div class="sec-label">· Skincare</div>
+      <h2>A rotina de <em>10 passos</em><br>que transformou o mundo</h2>
+    </div>
+    <p class="section-desc">O segredo da pele coreana não é magia, é consistência. Cada passo tem um propósito, cada produto um ativo. Aprenda a rotina completa e adapte ao seu biotipo.</p>
+  </div>
+
+  <div class="steps-list">
+
+    <div class="step-item" onclick="toggleStep(this)">
+      <div class="step-header">
+        <div class="step-num">01</div>
+        <div class="step-title-wrap">
+          <div class="step-kr">· Oil Cleanser</div>
+          <div class="step-title">Limpeza com óleo</div>
+        </div>
+        <div class="step-toggle">+</div>
+      </div>
+      <div class="step-body">
+        <div class="step-inner">
+          <div></div>
+          <div class="step-body-content">
+            <p>O primeiro passo remove maquiagem, protetor solar e oleosidade sem agredir a barreira cutânea. Massageie por 60 segundos em movimentos circulares e enxágue com água morna. A emulsificação é o sinal de que está funcionando.</p>
+            <p><strong>Ingredientes favoritos:</strong></p>
+            <span class="product-chip"> Óleo de rosa mosqueta</span>
+            <span class="product-chip"> Óleo de camélia</span>
+            <span class="product-chip"> Óleo de jojoba</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-item" onclick="toggleStep(this)">
+      <div class="step-header">
+        <div class="step-num">02</div>
+        <div class="step-title-wrap">
+          <div class="step-kr">· Foam Cleanser</div>
+          <div class="step-title">Limpeza com espuma</div>
+        </div>
+        <div class="step-toggle">+</div>
+      </div>
+      <div class="step-body">
+        <div class="step-inner">
+          <div></div>
+          <div class="step-body-content">
+            <p>A limpeza dupla garante que absolutamente nada fique na pele. O gel ou espuma remove o resíduo do óleo e restos microscópicos. Prefira pH baixo (4,5–5,5) para preservar o manto ácido natural.</p>
+            <span class="product-chip">pH balanceado</span>
+            <span class="product-chip">Extrato de arroz</span>
+            <span class="product-chip">Chá verde</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-item" onclick="toggleStep(this)">
+      <div class="step-header">
+        <div class="step-num">03</div>
+        <div class="step-title-wrap">
+          <div class="step-kr"> · Toner</div>
+          <div class="step-title">Tônico hidratante</div>
+        </div>
+        <div class="step-toggle">+</div>
+      </div>
+      <div class="step-body">
+        <div class="step-inner">
+          <div></div>
+          <div class="step-body-content">
+            <p>Diferente dos tônicos tradicionais, o tônico coreano é hidratante e prepara a pele para absorver os próximos passos. Aplique com as mãos em movimentos de pressão suave.</p>
+            <span class="product-chip">Ácido hialurônico</span>
+            <span class="product-chip">Extrato de flor de cerejeira</span>
+            <span class="product-chip">Mel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-item" onclick="toggleStep(this)">
+      <div class="step-header">
+        <div class="step-num">04</div>
+        <div class="step-title-wrap">
+          <div class="step-kr">· Essence</div>
+          <div class="step-title">Essência — o coração da rotina</div>
+        </div>
+        <div class="step-toggle">+</div>
+      </div>
+      <div class="step-body">
+        <div class="step-inner">
+          <div></div>
+          <div class="step-body-content">
+            <p>A essência é o produto mais coreano de todos. Mais leve que sérum, penetra profundamente nas camadas da pele acelerando renovação celular, uniformizando o tom e dando o famoso "glow" de dentro para fora.</p>
+            <span class="product-chip">Niacinamida</span>
+            <span class="product-chip">Galactomyces</span>
+            <span class="product-chip">Centella asiatica</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-item" onclick="toggleStep(this)">
+      <div class="step-header">
+        <div class="step-num">05–10</div>
+        <div class="step-title-wrap">
+          <div class="step-kr">Serum · Face Mask · Eye Bags · Moisturizer · FPS</div>
+          <div class="step-title">Sérum, Máscara, Olheira, Hidratante & FPS</div>
+        </div>
+        <div class="step-toggle">+</div>
+      </div>
+      <div class="step-body">
+        <div class="step-inner">
+          <div></div>
+          <div class="step-body-content">
+            <p><strong>Sérum:</strong> concentrado de ativos para tratar problemas específicos (manchas, textura, acne). Aplique antes da hidratação.</p>
+            <p><strong>Máscara de papel:</strong> use 2–3x por semana. 20 minutos de tratamento intensivo. Guarde o soro restante no pescoço e colo.</p>
+            <p><strong>Protetor solar:</strong> o passo mais importante de todos! FPS 50+ todos os dias, mesmo em dias nublados. É o anti-aging número 1.</p>
+            <span class="product-chip">FPS 50+</span>
+            <span class="product-chip">Sheet Mask</span>
+            <span class="product-chip">Retinol (noturno)</span>
+            <span class="product-chip">Ceramidas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOD -->
+<section class="food-section reveal" id="alimentacao">
+  <div class="sec-label">· Alimentação</div>
+  <h2 style="max-width:600px">O que as coreanas <em>comem</em><br>para ter essa pele</h2>
+
+  <div class="food-grid">
+
+    <div class="food-card reveal">
+      <div class="food-card-img">🥬</div>
+      <div class="food-card-body">
+        <span class="food-card-tag">Probiótico ·</span>
+        <div class="food-card-name">
+          Kimchi
+        </div>
+        <p class="food-card-desc">Fermentado de repolho com especiarias. Rico em lactobacilos que equilibram a microbiota intestinal, diretamente ligada à saúde da pele.</p>
+        <div class="food-benefits">
+          <span class="benefit-pill">Probiótico</span>
+          <span class="benefit-pill">Anti-inflamatório</span>
+          <span class="benefit-pill">Vitamina C</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card reveal">
+      <div class="food-card-img">🥣</div>
+      <div class="food-card-body">
+        <span class="food-card-tag">Superalimento ·</span>
+        <div class="food-card-name">
+          Juk — Mingau de Arroz
+        </div>
+        <p class="food-card-desc">Mingau nutritivo e de fácil digestão, consumido para curar e restaurar o corpo. Base perfeita para períodos de estresse ou adoecimento.</p>
+        <div class="food-benefits">
+          <span class="benefit-pill">Digestivo</span>
+          <span class="benefit-pill">Reconfortante</span>
+          <span class="benefit-pill">Energia lenta</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card reveal">
+      <div class="food-card-img">🍵</div>
+      <div class="food-card-body">
+        <span class="food-card-tag">Antioxidante ·</span>
+        <div class="food-card-name">
+          Chá de Barley
+        </div>
+        <p class="food-card-desc">O chá de cevada torrada é a bebida cotidiana coreana, hidratante e antioxidante. O yuja (limão-coreano) é carregado de vitamina C e clareia a pele.</p>
+        <div class="food-benefits">
+          <span class="benefit-pill">Antioxidante</span>
+          <span class="benefit-pill">Vitamina C</span>
+          <span class="benefit-pill">Hidratação</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="food-card reveal">
+      <div class="food-card-img">🐟</div>
+      <div class="food-card-body">
+        <span class="food-card-tag">Ômega 3 ·</span>
+        <div class="food-card-name">
+          Peixes gordurosos & Algas
+        </div>
+        <p class="food-card-desc">Salmão, cavala e as algas marinhas (miyeok, gim) são ricas em ômega-3 e minerais que fortalecem a barreira lipídica da pele e reduzem inflamação.</p>
+        <div class="food-benefits">
+          <span class="benefit-pill">Ômega-3</span>
+          <span class="benefit-pill">Colágeno</span>
+          <span class="benefit-pill">Iodo</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RITUAL -->
+<section class="ritual-section reveal" id="rituais">
+  <div class="ritual-visual-wrap">
+    <div class="ritual-big-circle">
+      <div class="orbit-item o1">🌅<small>manhã</small></div>
+      <div class="orbit-item o2">🌙<small>noite</small></div>
+      <div class="orbit-item o3">🧘<small>mente</small></div>
+      <div class="orbit-item o4">🥗<small>nutrir</small></div>
+      <div class="ritual-inner-circle">
+        <div class="kr-big">균형</div>
+        <div class="inner-sub">Equilíbrio</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ritual-content">
+    <div class="sec-label">· Ritual Diário</div>
+    <h2>Ser bem<br><em>consigo</em> mesmo<br></h2>
+
+    <div class="ritual-list">
+      <div class="ritual-item">
+        <div class="ritual-item-icon">🌅</div>
+        <div class="ritual-item-text">
+          <h4>Manhã suave</h4>
+          <p>Acorde sem alarme sempre que possível. Tome um copo de água morna com limão. Faça a rotina matinal de skincare com calma, como um ritual, não uma tarefa.</p>
+        </div>
+      </div>
+      <div class="ritual-item">
+        <div class="ritual-item-icon">🌿</div>
+        <div class="ritual-item-text">
+          <h4>Coma com variedade</h4>
+          <p>O modelo coreano de refeição com múltiplos acompanhamentos pequenos garante diversidade nutricional naturalmente. Sem dieta restritiva só equilíbrio e sabor.</p>
+        </div>
+      </div>
+      <div class="ritual-item">
+        <div class="ritual-item-icon">🛁</div>
+        <div class="ritual-item-text">
+          <h4>O banho como meditação</h4>
+          <p>Os coreanos tratam o banho como terapia. Esfoliação com Itallie (toalha coreana), sauna e banho frio, o trio que renova a pele e acalma o sistema nervoso.</p>
+        </div>
+      </div>
+      <div class="ritual-item">
+        <div class="ritual-item-icon">🌙</div>
+        <div class="ritual-item-text">
+          <h4>Noite que transforma</h4>
+          <p>A noite é quando a pele se regenera. Máscara noturna com retinol ou péptidos sobre a hidratante sela todos os ativos e amplifica os resultados enquanto você dorme.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section class="tips-section reveal" id="dicas">
+  <div class="sec-label">· Dicas de ouro</div>
+  <h2 style="color:var(--white); max-width:500px; margin-bottom:0;">Segredos que as<br><em style="color:var(--rose)">coreanas</em> guardam</h2>
+
+  <div class="tips-grid">
+
+    <div class="tip-card reveal" data-num="01">
+      <span class="tip-emoji">💧</span>
+      <h3>Hidratação em camadas</h3>
+      <p>Em vez de uma hidratação pesada, aplique 3–4 camadas finas de produtos leves. A pele absorve mais e o resultado é muito mais duradouro e natural.</p>
+      <span class="tip-tag">Skincare</span>
+    </div>
+
+    <div class="tip-card reveal" data-num="02">
+      <span class="tip-emoji">🍚</span>
+      <h3>Água de arroz no rosto</h3>
+      <p>Fermente a água do cozimento do arroz por 24h e use como tônico. Rico em inositol, clareia manchas, minimiza poros e dá luminosidade. Segredo milenar coreano.</p>
+      <span class="tip-tag">DIY</span>
+    </div>
+
+    <div class="tip-card reveal" data-num="03">
+      <span class="tip-emoji">🧊</span>
+      <h3>Gelo de chá verde</h3>
+      <p>Congele chá verde em formas de gelo e massageie o rosto pela manhã por 2 minutos. Reduz vermelhidão, fecha os poros e ativa a circulação, rosto desperto instantaneamente.</p>
+      <span class="tip-tag">DIY</span>
+    </div>
+
+    <div class="tip-card reveal" data-num="04">
+      <span class="tip-emoji">🌸</span>
+      <h3>Patting, não esfregação</h3>
+      <p>Aplique todos os produtos com movimentos de batidinha suave (patting) com as pontas dos dedos. A fricção irrita a pele. O patting estimula circulação e absorção.</p>
+      <span class="tip-tag">Técnica</span>
+    </div>
+
+    <div class="tip-card reveal" data-num="05">
+      <span class="tip-emoji">🥒</span>
+      <h3>Menos é mais — skip care</h3>
+      <p>A tendência "skip care" é simplesmente usar menos produtos, porém, mais eficazes. Nos dias de pele sensível, um bom limpador e protetor solar já são suficientes.</p>
+      <span class="tip-tag">Filosofia</span>
+    </div>
+
+    <div class="tip-card reveal" data-num="06">
+      <span class="tip-emoji">😴</span>
+      <h3>Dormir é o melhor sérum</h3>
+      <p>Estudos coreanos mostram que 7–8h de sono produzem mais efeito antienvelhecimento do que qualquer produto. É durante o sono que o hormônio do crescimento repara a pele.</p>
+      <span class="tip-tag">Estilo de vida</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA / NEWSLETTER -->
+<section class="cta-section reveal" id="newsletter">
+  <div class="sec-label">· Newsletter</div>
+  <h2>Receba rituais<br>K-Beauty toda semana</h2>
+  <p>Dicas de skincare, receitas funcionais coreanas e segredos de beleza diretamente no seu e-mail — sem exageros, só o essencial.</p>
+
+  <div class="email-form">
+    <input type="email" placeholder="seu@email.com">
+    <button type="button">Quero receber ✦</button>
+  </div>
+
+  <p class="cta-note">Sem spam · Cancele quando quiser · É gratuito</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo-foot">K-BEAUTY LIFE</div>
+  <p>© 2026 · Auto-cuidado coreano com amor 🌸</p>
+  <nav>
+    <ul>
+      <li><a href="#" style="text-decoration:none; color:var(--ash); font-size:0.72rem; letter-spacing:0.12em;">Privacidade</a></li>
+      <li><a href="https://www.instagram.com/life.kbeauty/" style="text-decoration:none; color:var(--ash); font-size:0.72rem; letter-spacing:0.12em;">Instagram</a></li>
+      <li><a href="https://br.pinterest.com/lifekbeautyco/korean-skincare/" style="text-decoration:none; color:var(--ash); font-size:0.72rem; letter-spacing:0.12em;">Pinterest</a></li>
+    </ul>
+  </nav>
+</footer>
+
+<script>
+// ── Cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top  = e.clientY + 'px';
+  setTimeout(() => {
+    ring.style.left = e.clientX + 'px';
+    ring.style.top  = e.clientY + 'px';
+  }, 80);
+});
+document.querySelectorAll('a, button, .food-card, .tip-card, .orbit-item').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.width = '20px';
+    cursor.style.height = '20px';
+    ring.style.width = '60px';
+    ring.style.height = '60px';
+    ring.style.opacity = '0.25';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.width = '10px';
+    cursor.style.height = '10px';
+    ring.style.width = '36px';
+    ring.style.height = '36px';
+    ring.style.opacity = '0.5';
+  });
+});
+
+// ── Accordion
+function toggleStep(el) {
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.step-item.open').forEach(s => s.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+
+// ── Scroll reveals
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('vis'), 80);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Stagger food cards and tips
+const staggerObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const children = entry.target.querySelectorAll('.reveal');
+      children.forEach((c, i) => {
+        setTimeout(() => c.classList.add('vis'), i * 120);
+      });
+      staggerObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.food-grid, .tips-grid').forEach(el => staggerObs.observe(el));
+</script>
+</body>
+</html>
